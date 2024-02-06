@@ -1,0 +1,6 @@
+@Park20.BarrierSystem.Api_HostAddress = http://localhost:5145
+
+GET {{Park20.BarrierSystem.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

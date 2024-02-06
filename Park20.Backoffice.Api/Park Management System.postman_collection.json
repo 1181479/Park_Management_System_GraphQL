@@ -1,0 +1,807 @@
+{
+	"info": {
+		"_postman_id": "c64ec755-a851-47c8-b318-9332407d1d7c",
+		"name": "Park Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13199399"
+	},
+	"item": [
+		{
+			"name": "Park",
+			"item": [
+				{
+					"name": "Get Parks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"}\r",
+									"pm.collectionVariables.set(\"parkName\", pm.response.json()[0].parkName);\r",
+									"pm.collectionVariables.set(\"latitude\", pm.response.json()[0].latitude);\r",
+									"pm.collectionVariables.set(\"longitude\", pm.response.json()[0].longitude);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Park",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Park"
+							]
+						},
+						"description": "Test for /api/Park/GetAvailableSpace endpoint"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Parking Spots Count",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}\r",
+									"pm.test(\"motocycleCount is not 0\"), function () {\r",
+									"    pm.expect(pm.response.json().motocycleCount).to.not.eql(0);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Park/GetParkingSpotsCount?parkName={{parkName}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Park",
+								"GetParkingSpotsCount"
+							],
+							"query": [
+								{
+									"key": "parkName",
+									"value": "{{parkName}}"
+								}
+							]
+						},
+						"description": "Test for /api/Park/GetAvailableSpace endpoint"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Parks By Distance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Park/GetAllParksByDistance?latitude={{latitude}}&latitude={{longitude}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Park",
+								"GetAllParksByDistance"
+							],
+							"query": [
+								{
+									"key": "latitude",
+									"value": "{{latitude}}"
+								},
+								{
+									"key": "latitude",
+									"value": "{{longitude}}"
+								}
+							]
+						},
+						"description": "Test for /api/Park/GetAvailableSpace endpoint"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Available Space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Park/GetAvailableSpace?parkName={{parkName}}&licencePlate=aa-00-00",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Park",
+								"GetAvailableSpace"
+							],
+							"query": [
+								{
+									"key": "parkName",
+									"value": "{{parkName}}"
+								},
+								{
+									"key": "licencePlate",
+									"value": "aa-00-00"
+								}
+							]
+						},
+						"description": "Test for /api/Park/GetAvailableSpace endpoint"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vehicle Type Available",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Park/GetVehicleTypeAvailable?parkName={{parkName}}&licencePlate=aa-00-00",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Park",
+								"GetVehicleTypeAvailable"
+							],
+							"query": [
+								{
+									"key": "parkName",
+									"value": "{{parkName}}"
+								},
+								{
+									"key": "licencePlate",
+									"value": "aa-00-00"
+								}
+							]
+						},
+						"description": "Test for /api/Park/GetAvailableSpace endpoint"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Price Table",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ParkName\": \"Parque estacionamento SABA - Cardosas\",\r\n    \"NightFee\": 10.99,\r\n    \"PriceTableDto\": {\r\n        \"InitialDate\": \"2023-11-14T00:00:00\",\r\n        \"LinePrices\": [\r\n            {\r\n                \"PeriodDto\": {\r\n                    \"InitialTime\": \"08:00:00\",\r\n                    \"FinalTime\": \"12:00:00\",\r\n                    \"FractionsDtos\": [\r\n                        {\r\n                            \"Order\": 1,\r\n                            \"Minutes\": \"00:15:00\",\r\n                            \"VehicleType\": 0,\r\n                            \"Price\": 0.0\r\n                        },\r\n                        {\r\n                            \"Order\": 2,\r\n                            \"Minutes\": \"00:30:00\",\r\n                            \"VehicleType\": 1,\r\n                            \"Price\": 0.0\r\n                        },\r\n                        {\r\n                            \"Order\": 3,\r\n                            \"Minutes\": \"00:45:00\",\r\n                            \"VehicleType\": 2,\r\n                            \"Price\": 0.0\r\n                        },\r\n                        {\r\n                            \"Order\": 4,\r\n                            \"Minutes\": \"01:00:00\",\r\n                            \"VehicleType\": 3,\r\n                            \"Price\": 0.0\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Park/UpdatePriceTable",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Park",
+								"UpdatePriceTable"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Get All From User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Payment/GetAllFromUser/John Doe",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Payment",
+								"GetAllFromUser",
+								"John Doe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}\r",
+									"pm.collectionVariables.set(\"paymentToken\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cardNumber\": 0,\r\n  \"cvv\": 0,\r\n  \"fullName\": \"John Doe\",\r\n  \"expirationDate\": \"2023-12-03T14:24:11.316Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://localhost:5004/api/Payment/GenerateToken",
+							"protocol": "{{protocol}}",
+							"host": [
+								"localhost"
+							],
+							"port": "5004",
+							"path": [
+								"api",
+								"Payment",
+								"GenerateToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lastFourDigits\": 9999,\r\n    \"expirationDate\": \"2023-12-03T14:22:08.831Z\",\r\n    \"fullName\": \"John Doe\",\r\n    \"token\": \"{{paymentToken}}\",\r\n    \"username\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Payment",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Payment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"password\": \"string\",\r\n  \"email\": \"string\",\r\n  \"username\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/User",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"User"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vehicle",
+			"item": [
+				{
+					"name": "Vehicle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"licensePlate\": \"27-cc-00\",\r\n  \"brand\": \"brand1\",\r\n  \"model\": \"S\",\r\n  \"type\": \"GPL\",\r\n  \"username\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Vehicle",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Vehicle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All From User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Vehicle/GetAllFromUser/John Doe",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Vehicle",
+								"GetAllFromUser",
+								"John Doe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vehicle By Licence Plate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Vehicle/GetVehicleByLicencePlate?license=cc-00-00",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Vehicle",
+								"GetVehicleByLicencePlate"
+							],
+							"query": [
+								{
+									"key": "license",
+									"value": "cc-00-00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Park Car",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"parkName\": \"{{parkName}}\",\r\n    \"licensePlate\": \"cc-00-00\",\r\n    \"isEntrance\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Vehicle/ParkCar",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Vehicle",
+								"ParkCar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Leave Park",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\"), function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"parkName\": \"{{parkName}}\",\r\n    \"licensePlate\": \"cc-00-00\",\r\n    \"isEntrance\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/Vehicle/LeavePark",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"Vehicle",
+								"LeavePark"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ParkyWallet",
+			"item": [
+				{
+					"name": "Get Parky Coin Config Values",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/ParkyWallet/Values",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"ParkyWallet",
+								"Values"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Assing Parky Coin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\"string\"]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/ParkyWallet",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"ParkyWallet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Parking Value",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "1",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/ParkyWallet/Parking",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"ParkyWallet",
+								"Parking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Regestry Value",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "15",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/ParkyWallet/NewCustomer",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"ParkyWallet",
+								"NewCustomer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Bulk Value",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "5",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{baseURL}}/api/ParkyWallet/Bulk",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"ParkyWallet",
+								"Bulk"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.globals.set(\"protocol\", \"http\");",
+					"pm.globals.set(\"baseURL\", \"localhost:5000\");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "parkName",
+			"value": ""
+		},
+		{
+			"key": "latitude",
+			"value": ""
+		},
+		{
+			"key": "longitude",
+			"value": ""
+		},
+		{
+			"key": "paymentToken",
+			"value": ""
+		}
+	]
+}

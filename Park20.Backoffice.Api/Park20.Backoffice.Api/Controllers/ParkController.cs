@@ -13,13 +13,11 @@ namespace Park20.Backoffice.Api.Controllers
 
         private readonly IParkService _parkService;
         private readonly IVehicleService _vehicleService;
-        private readonly IParkLogService _parkLogService;
 
         public ParkController(IParkService parkService, IVehicleService vehicleService, IParkLogService parkLogService)
         {
             _parkService = parkService;
             _vehicleService = vehicleService;
-            _parkLogService = parkLogService;
         }
 
         [HttpGet("GetAvailableSpace")]

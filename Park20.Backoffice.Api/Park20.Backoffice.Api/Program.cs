@@ -1,5 +1,6 @@
 using Dapper;
 using Microsoft.OpenApi.Models;
+using Park20.Backoffice.Api.Graphql;
 using Park20.Backoffice.Infrastructure;
 using System.Data.SqlClient;
 
@@ -49,6 +50,9 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddGraphQLServer()
+    .AddQueryType<Query>()
+    .AddMutationType<Mutation>();
 
 var app = builder.Build();
 
@@ -64,5 +68,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseCors();
 app.MapControllers();
+app.MapGraphQL("/graphql");
 
 app.Run();

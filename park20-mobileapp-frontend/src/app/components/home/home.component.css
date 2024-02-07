@@ -1,0 +1,63 @@
+::ng-deep .card-search-park .p-card-body {
+  color: white;
+  background-color: goldenrod;
+  max-width: 100%;
+}
+
+::ng-deep .location-button .p-button,
+::ng-deep .location-button .p-button-icon-only .p-button-rounded {
+  border-color: black;
+  color: black;
+}
+
+/* app.component.css */
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Faz a barra de pesquisa ocupar 100% da largura do card */
+}
+
+.search-bar-input {
+  display: flex; /* Para permitir que os elementos dentro se comportem como uma linha */
+  align-items: center; /* Centraliza verticalmente os elementos dentro da search-bar-input */
+  width: 100%; /* Faz a search-bar-input ocupar 100% da largura da search-bar */
+}
+
+.input-field {
+  flex: 1; /* Faz a entrada de texto ocupar todo o espaço disponível na search-bar-input */
+  width: 0; /* Inicia com largura 0 para permitir que o botão fique à direita */
+  border: none; /* Remove a borda para parecer mais integrado */
+}
+
+/* app.component.css */
+.location-button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0; /* Removendo o padding para reduzir o espaço ao redor do ícone */
+  background-color: transparent; /* Removendo a cor de fundo */
+  border: none; /* Removendo a borda */
+  color: black; /* Cor do ícone */
+  cursor: pointer;
+  padding: 0.75rem;
+}
+
+::ng-deep .p-card-title {
+  padding-top: 1.1rem !important;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px; /* Altura da barra de navegação */
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}

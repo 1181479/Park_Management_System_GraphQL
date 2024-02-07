@@ -1,0 +1,17 @@
+::ng-deep .p-dialog .p-dialog-content {
+  padding: 2rem 1.5rem 2rem 1.5rem;
+}
+
+label.text-red-600.ng-star-inserted {
+  top: 3.6rem;
+}
+
+@media only screen and (max-width: 600px) {
+  :host ::ng-deep .ui-toast {
+    width: 80%;
+    max-width: 300px;
+  }
+  :host ::ng-deep .ui-toast-message {
+    font-size: 14px;
+  }
+}

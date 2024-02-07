@@ -1,0 +1,64 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinhe no canto superior esquerdo */
+  justify-content: flex-start; /* Alinhe no canto superior esquerdo */
+  min-height: 100vh;
+  margin: 0; /* Remova as margens para aproveitar todo o espaço disponível */
+  padding: 20px; /* Adicione um preenchimento para afastar do limite da página */
+}
+
+.barrier-container {
+  position: relative;
+  width: 25px;
+  height: 300px;
+}
+
+.support {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 40px;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.barrier {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 250px;
+  background-color: #fff;
+  border: 2px solid #c00;
+  border-radius: 4px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #c00,
+    #c00 5px,
+    #fff 5px,
+    #fff 10px
+  );
+  transform-origin: bottom center;
+  transition: transform 0.5s ease-in-out;
+}
+
+.barrier.raised {
+  transform: rotate(90deg);
+}
+
+::ng-deep .button-lock .p-button {
+  background-color: #000 !important;
+  border-radius: 0;
+  border-color: #000;
+  width: 100%;
+}
+
+::ng-deep .button-lock .p-button .p-button-icon {
+  color: #fff !important;
+}

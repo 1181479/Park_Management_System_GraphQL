@@ -1,0 +1,31 @@
+<p-toast
+  [breakpoints]="{ '921px': { width: '100%', right: '0', left: '0' } }"
+></p-toast>
+<div class="input-vehicle-form">
+  <span class="p-float-label mb-5 mt-5">
+    <p-inputMask
+      mask="9999 9999 9999 9999"
+      [(ngModel)]="cardNumber"
+    ></p-inputMask>
+    <label htmlFor="cardNumber">Card Number</label>
+  </span>
+  <span class="p-float-label mb-5">
+    <p-inputMask mask="99-99-9999" [(ngModel)]="expirationDate"></p-inputMask>
+    <label htmlFor="expirationDate">Expiration Date</label>
+  </span>
+  <span class="p-float-label mb-5">
+    <p-inputMask mask="999" [(ngModel)]="cvv"></p-inputMask>
+    <label htmlFor="cvv">CVV</label>
+  </span>
+  <span class="p-float-label mb-5">
+    <input pInputText id="Full Name" [(ngModel)]="fullName" />
+    <label htmlFor="fullName">Full Name</label>
+  </span>
+  <p-button
+    label="Add"
+    severity="secondary"
+    size="small"
+    (click)="addPaymentMethodToUser()"
+    [disabled]="!cardNumber || !fullName || !expirationDate || !cvv"
+  ></p-button>
+</div>

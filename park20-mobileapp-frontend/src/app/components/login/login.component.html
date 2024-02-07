@@ -1,0 +1,43 @@
+<p-toast
+  [breakpoints]="{ '921px': { width: '100%', right: '0', left: '0' } }"
+></p-toast>
+<div class="background-image">
+  <div class="landing-container">
+    <div class="welcome-card text-yellow-300">
+      <p class="text-2xl font-bold">Welcome to Park20!</p>
+      <p class="text-sm mt-0">Park your car anywhere, anytime.</p>
+      <div class="landing-form">
+        <span class="p-input-icon-left mb-3">
+          <i class="pi pi-user"></i>
+          <input
+            id="username"
+            [(ngModel)]="username"
+            type="text"
+            pInputText
+            placeholder="Username"
+          />
+        </span>
+        <span class="p-input-icon-left mb-3">
+          <i class="pi pi-key"></i>
+          <input
+            [(ngModel)]="password"
+            type="password"
+            pInputText
+            placeholder="Password"
+          />
+        </span>
+        <button
+          pButton
+          pRipple
+          label="Login"
+          (click)="login()"
+          class="w-6 bg-yellow-600 border-yellow-600 mb-4"
+        ></button>
+        <div class="sign-up-div text-sm">
+          <p class="mr-1">Don't have an account?</p>
+          <a href="/create-account" class="text-yellow-300">Sign up now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

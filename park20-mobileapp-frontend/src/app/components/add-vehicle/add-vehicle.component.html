@@ -1,0 +1,41 @@
+<p-toast
+  [breakpoints]="{ '921px': { width: '100%', right: '0', left: '0' } }"
+></p-toast>
+<div class="input-vehicle-form">
+  <div class="max-w-full"></div>
+  <span class="p-float-label mb-6">
+    <p-inputMask id="licensePlate" [(ngModel)]="licensePlate" mask="**-**-**">
+    </p-inputMask>
+    <label htmlFor="licensePlate">License Plate</label>
+    <label *ngIf="!isLicensePlateValid(this.licensePlate) && this.licensePlate != ''" class="text-red-600">
+      The license plate must be in the format XX-99-99 or 99-99-XX.
+    </label>
+  </span>
+  <span class="p-float-label mb-6">
+    <input pInputText id="model" [(ngModel)]="model" />
+    <label htmlFor="model">Model</label>
+  </span>
+  <span class="p-float-label mb-6">
+    <input pInputText id="brand" [(ngModel)]="brand" />
+    <label htmlFor="brand">Brand</label>
+  </span>
+  <div class="flex flex-column gap-3">
+    <p class="mb-3 font-semibold">Vehicle Type</p>
+    <div *ngFor="let type of vehicleTypeList" class="field-checkbox">
+      <p-radioButton
+        [inputId]="type"
+        name="type"
+        [value]="type"
+        [(ngModel)]="selectedType"
+      ></p-radioButton>
+      <label [for]="type" class="ml-2">{{ type }}</label>
+    </div>
+  </div>
+  <p-button
+    label="Create"
+    severity="secondary"
+    size="small"
+    (click)="addVehicleToUser()"
+    [disabled]="!isLicensePlateValid(this.licensePlate) || !selectedType"
+  ></p-button>
+</div>

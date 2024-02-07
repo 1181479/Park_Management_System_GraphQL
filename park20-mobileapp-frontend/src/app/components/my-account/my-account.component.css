@@ -1,0 +1,44 @@
+::ng-deep .toolbar-my-account .p-toolbar {
+  background-color: goldenrod;
+  color: white;
+}
+
+.card-information {
+  display: flex;
+  align-items: center;
+}
+
+.table-container {
+  margin-bottom: 50px;
+}
+
+.nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  :host ::ng-deep .ui-toast {
+    width: 80%;
+    max-width: 300px;
+  }
+  :host ::ng-deep .ui-toast-message {
+    font-size: 14px;
+  }
+}
+
+.parky-wallet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  color: goldenrod;
+}
+.current-amount {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

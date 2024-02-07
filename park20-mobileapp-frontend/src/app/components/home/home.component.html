@@ -1,0 +1,16 @@
+<div class="home-background">
+  <p-card class="card-search-park" header="Where are you planning to park?">
+    <div class="search-bar">
+      <p-dropdown
+        [options]="vehicleList"
+        [(ngModel)]="selectedVehicle"
+        optionLabel="licensePlate"
+        [showClear]="true"
+        (ngModelChange)="checkAvailableParks()"
+        placeholder="Select a Vehicle"
+      ></p-dropdown>
+    </div>
+  </p-card>
+  <div id="map"></div>
+  <app-nav-bar class="app-nav-bar"></app-nav-bar>
+</div>

@@ -1,0 +1,15 @@
+<div class="page-container">
+  <!-- Barreira de Entrada -->
+  <div class="barrier-container">
+    <div class="support"></div>
+    <div class="barrier" [class.raised]="!barrierRaised"></div>
+  </div>
+  <p-toggleButton
+    class="button-lock"
+    (onChange)="toggleBarrier('entry')"
+    onIcon="pi pi-lock-open"
+    offIcon="pi pi-lock"
+    styleClass="toggle-button"
+    [style]="{ width: '25px' }"
+  ></p-toggleButton>
+</div>

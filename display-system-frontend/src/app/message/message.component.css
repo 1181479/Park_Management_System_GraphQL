@@ -1,0 +1,18 @@
+.ui {
+  color: orange;
+  background: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 15px;
+  max-width: 80%;
+  box-sizing: border-box;
+  text-align: center;
+}

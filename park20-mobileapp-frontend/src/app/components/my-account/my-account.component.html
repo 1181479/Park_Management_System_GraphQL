@@ -1,0 +1,200 @@
+<p-toast
+  [breakpoints]="{ '921px': { width: '100%', right: '0', left: '0' } }"
+></p-toast>
+<div>
+  <p-toolbar class="toolbar-my-account">
+    <ng-template pTemplate="start">
+      <span class="text-base font-bold">My Account</span>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <span class="text-xs mr-2">{{ fullName }}</span>
+      <p-avatar icon="pi pi-user" shape="circle"></p-avatar>
+    </ng-template>
+  </p-toolbar>
+  <div class="table-container">
+    <p-accordion>
+      <p-accordionTab header="Personal Information">
+        <div class="personal-information">
+          <p class="text-xs font-bold">Username</p>
+          <p class="text-xs">{{ username }}</p>
+          <p class="text-xs font-bold">Full Name</p>
+          <p class="text-xs">{{ fullName }}</p>
+          <p class="text-xs font-bold">E-mail</p>
+          <p class="text-xs">{{ email }}</p>
+        </div>
+        <p-button
+          icon="pi pi-angle-right"
+          size="small"
+          severity="secondary"
+          label="Change Personal Information"
+        ></p-button>
+      </p-accordionTab>
+      <p-accordionTab header="My Vehicles">
+        <div class="mb-3">
+          <div class="mb-5">
+            <p-button
+              icon="pi pi-plus"
+              label="Add Vehicle"
+              severity="secondary"
+              size="small"
+              (click)="showVehicleForm()"
+            ></p-button>
+          </div>
+        </div>
+        <p-table [value]="vehicleList" [scrollable]="true" scrollHeight="100%">
+          <ng-template pTemplate="header">
+            <tr class="text-xs">
+              <th style="width: calc(100% / 4); text-align: center">
+                License Plate
+              </th>
+              <th style="width: calc(100% / 4); text-align: center">Type</th>
+              <th style="width: calc(100% / 4); text-align: center">Brand</th>
+              <th style="width: calc(100% / 4); text-align: center">Model</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-vehicle>
+            <tr>
+              <td
+                style="
+                  font-size: 10px;
+                  width: calc(100% / 4);
+                  text-align: center;
+                "
+              >
+                {{ vehicle.licensePlate }}
+              </td>
+              <td
+                style="font-size: 10px; width: calc(100% / 4); text-align: left"
+              >
+                {{ vehicle.type }}
+              </td>
+              <td
+                style="
+                  font-size: 10px;
+                  width: calc(100% / 4);
+                  text-align: center;
+                "
+              >
+                {{ vehicle.brand }}
+              </td>
+              <td
+                style="
+                  font-size: 10px;
+                  width: calc(100% / 4);
+                  text-align: center;
+                "
+              >
+                {{ vehicle.model }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-accordionTab>
+      <p-accordionTab header="Wallet">
+        <p-table
+          [value]="paymentMethodList"
+          [scrollable]="true"
+          scrollHeight="100%"
+        >
+          <ng-template pTemplate="header">
+            <tr class="text-xs">
+              <th style="width: calc(100% / 2); text-align: center">
+                Card Number
+              </th>
+              <th style="width: calc(100% / 2); text-align: center">
+                Full Name
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-paymentMethod>
+            <tr>
+              <td
+                style="
+                  font-size: 10px;
+                  width: calc(100% / 2);
+                  text-align: center;
+                "
+              >
+                <div class="card-information">
+                  <i class="pi pi-credit-card mr-3"></i>
+                  <i class="pi pi-ellipsis-h"></i>
+                  <p class="text-xs">{{ paymentMethod.lastFourDigits }}</p>
+                </div>
+              </td>
+              <td
+                style="font-size: 10px; width: calc(100% / 2); text-align: left"
+              >
+                {{ paymentMethod.fullName }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+
+        <div class="mt-3">
+          <p-button
+            icon="pi pi-plus"
+            label="Add Payment Method"
+            severity="secondary"
+            size="small"
+            (click)="showPaymentMethodForm()"
+          ></p-button>
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Parky Wallet">
+        <div *ngIf="movementsList.length == 0">
+          <p class="text-xs font-bold text-black-alpha-70">
+            No transactions registered.
+          </p>
+        </div>
+        <div *ngIf="movementsList.length !== 0" class="parky-wallet mb-2">
+          <p class="text-xs font-bold text-black-alpha-70">
+            Current Parky Balance
+          </p>
+          <div class="current-amount">
+            <p class="text-5xl m-0">{{ currentBalance }}</p>
+            <i class="ml-1 pi pi-paypal"></i>
+          </div>
+        </div>
+        <p-table
+          *ngIf="movementsList.length !== 0"
+          [value]="movementsList"
+          [scrollable]="true"
+          scrollHeight="100%"
+        >
+          <ng-template pTemplate="header">
+            <tr class="text-xs">
+              <th style="width: 10%; text-align: center"></th>
+              <th style="width: 30%; text-align: center">Amount</th>
+              <th style="width: 30%; text-align: center">Date</th>
+              <th style="width: 30%; text-align: center">Hour</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-movement>
+            <tr>
+              <td style="font-size: 10px; width: 10%; text-align: center">
+                <i
+                  *ngIf="movement.movementType === 'Inbound'"
+                  class="text-green-500 pi pi-plus-circle"
+                ></i>
+                <i
+                  *ngIf="movement.movementType === 'Outbound'"
+                  class="text-red-600 pi pi-minus-circle"
+                ></i>
+              </td>
+              <td style="font-size: 10px; width: 30%; text-align: left">
+                {{ movement.amount }}
+              </td>
+              <td style="font-size: 10px; width: 30%; text-align: center">
+                {{ movement.date | date : "dd-MM-yyyy" }}
+              </td>
+              <td style="font-size: 10px; width: 30%; text-align: center">
+                {{ movement.date | date : "hh:mm a" }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-accordionTab>
+    </p-accordion>
+    <app-nav-bar class="app-nav-bar"></app-nav-bar>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="ui">
+  <ng-container
+    *ngIf="messageType === 'General Message'; else welcomeOrGoodbye"
+  >
+    Welcome to {{ parkName }}<br />
+    🏍 Motorcycles: {{ availableMotorcycleSpots }} spots available<br />
+    🚗 Automobiles: {{ availableAutomobileSpots }} spots available<br />
+    ⛽ GPL Vehicles: {{ availableGPLSpots }} spots available<br />
+    ⚡ Electric Vehicles: {{ availableElectricSpots }} spots available<br />
+    Grab a spot and enjoy the ride!
+  </ng-container>
+  <ng-template #welcomeOrGoodbye>
+    <div *ngIf="messageType === 'Welcome Message'">
+      Hello and welcome to {{ parkName }}!<br />
+      We hope you have a fantastic time with us.
+    </div>
+    <div *ngIf="messageType === 'Goodbye Message'">
+      Goodbye! Thank you for visiting {{ parkName }}.<br />
+      We look forward to seeing you again soon!
+      <br />
+      Your parking cost was {{ totalCost | currency : "EUR" : "symbol" : "1.2-2" }}.
+      <br />
+      Total Parky Coins spent: {{ parkyCoinSpent }}.
+      <br />
+      {{ otherAmount | currency : "EUR" : "symbol" : "1.2-2" }} has been debited from your account.
+    </div>
+  </ng-template>
+</div>

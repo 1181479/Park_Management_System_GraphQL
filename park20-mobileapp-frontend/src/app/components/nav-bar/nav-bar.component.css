@@ -1,0 +1,32 @@
+/* app.component.css */
+.app-container {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.p-tabmenu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Garante que a barra de navegação esteja acima de outros elementos */
+  background-color: #333; /* Cor de fundo da barra de navegação */
+}
+
+::ng-deep .p-tabmenu .p-tabmenuitem.p-highlight .p-menuitem-link {
+  border-color: goldenrod !important;
+  color: goldenrod !important;
+}
+::ng-deep .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
+  padding-left: 3rem;
+  padding-bottom: 1rem;
+  padding-right: 3rem;
+  padding-top: 1rem;
+}
+
+::ng-deep .p-tabmenu .p-tabmenu-nav {
+  justify-content: center !important;
+}

@@ -28,6 +28,13 @@ namespace Park20.Backoffice.Api.Controllers
             var paymentMethodList = await _paymentService.GetPaymentMethodListFromUser(username);
             return Ok(paymentMethodList);
         }
+        
+        [HttpGet("PrintMetrics")]
+        public IActionResult PrintMetrics()
+        {
+            _paymentService.PrintMetrics();
+            return Ok();
+        }
 
     }
 }

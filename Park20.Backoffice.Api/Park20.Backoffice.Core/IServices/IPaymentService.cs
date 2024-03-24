@@ -11,5 +11,6 @@ namespace Park20.Backoffice.Core.IServices
         Task<IEnumerable<PaymentMethodResultDto>> GetPaymentMethodListFromUser(string username);
         Task<HibridPayment> MakePayment(string licensePlate, decimal totalCost);
         Task<decimal> CalculateCost(string parkName, string licensePlate);
+        public void PrintMetrics();
     }
 }

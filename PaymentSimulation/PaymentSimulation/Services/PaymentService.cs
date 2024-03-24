@@ -18,15 +18,16 @@ namespace PaymentSimulation.Services
                 //receipt = GeneratePaymentReceipt(paymentRequest);
                 //confirmation = GenerateConfirmation(paymentRequest, user);
                 Console.WriteLine("Payment Successful");
+                return true;
             }
             else
             {
                 //receipt = null;
                 //confirmation = null;
                 Console.WriteLine("Payment Failed");
+                return false;
             }
 
-            return true;
         }
 
         public TokenResponse GenerateToken(GenerateTokenRequest request)
@@ -67,7 +68,7 @@ namespace PaymentSimulation.Services
         private bool SimulatePaymentProcessing(PaymentRequest paymentRequest, bool token)
         {
             Console.WriteLine("Processing...");
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
             return token;
         }
 

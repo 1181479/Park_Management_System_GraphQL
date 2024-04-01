@@ -18,7 +18,7 @@ namespace PaymentSimulation.Controllers
         [HttpPost("Process")]
         public IActionResult ProcessPayment([FromBody] PaymentRequest paymentRequest)
         {
-            bool paymentSuccessful = _paymentService.ProcessPayment(paymentRequest);
+            object paymentSuccessful = _paymentService.ProcessPayment(paymentRequest);
 
             return Ok(paymentSuccessful);
         }

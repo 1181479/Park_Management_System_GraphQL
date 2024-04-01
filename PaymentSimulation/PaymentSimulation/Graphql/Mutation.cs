@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PaymentSimulation.Models;
 using PaymentSimulation.Services;
+using static PaymentSimulation.Services.PaymentService;
 
 namespace PaymentSimulation.Graphql
 {
@@ -13,9 +14,9 @@ namespace PaymentSimulation.Graphql
             _paymentService = paymentService;
         }
 
-        public Task<bool> ProcessPayment(PaymentRequest paymentRequest)
+        public Task<ProcessPaymentResult> ProcessPayment(PaymentRequest paymentRequest)
         {
-            bool paymentSuccessful = _paymentService.ProcessPayment(paymentRequest);
+            ProcessPaymentResult paymentSuccessful = _paymentService.ProcessPayment(paymentRequest);
 
             return Task.FromResult(paymentSuccessful);
         }

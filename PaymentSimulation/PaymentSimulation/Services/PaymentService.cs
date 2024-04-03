@@ -30,7 +30,17 @@ namespace PaymentSimulation.Services
 
         }
 
-        public record ProcessPaymentResult(bool succesful, string confirmation);
+        public record ProcessPaymentResult(bool Successful, string ConfirmationString);
+
+        public class ProcessPaymentResultType : ObjectType<ProcessPaymentResult>
+        {
+            protected override void Configure(IObjectTypeDescriptor<ProcessPaymentResult> descriptor)
+            {
+                descriptor.Field(t => t.Successful);
+                descriptor.Field(t => t.ConfirmationString)
+                    .Deprecated("This field is deprecated. Use another field instead.");
+            }
+        }
 
         public TokenResponse GenerateToken(GenerateTokenRequest request)
         {

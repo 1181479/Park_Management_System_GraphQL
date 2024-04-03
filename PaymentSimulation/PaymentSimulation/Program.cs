@@ -1,5 +1,6 @@
 using PaymentSimulation.Graphql;
 using PaymentSimulation.Services;
+using static PaymentSimulation.Services.PaymentService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddGraphQLServer()
     //.ConfigureSchema(sb => sb.ModifyOptions(opts => opts.StrictValidation = false))
     .AddQueryType<Query>()
-    .AddMutationType<Mutation>();
+    .AddMutationType<Mutation>()
+    .AddType<ProcessPaymentResultType>();
 
 var app = builder.Build();
 

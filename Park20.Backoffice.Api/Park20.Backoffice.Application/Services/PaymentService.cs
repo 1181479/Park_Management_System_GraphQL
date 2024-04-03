@@ -262,7 +262,7 @@ namespace Park20.Backoffice.Application.Services
 
         private async Task<bool> SimulatePayment(string token, decimal totalCost)
         {
-            var completeQueryString = "mutation($input: PaymentRequestInput!){ processPayment(paymentRequest: $input){ succesful, confirmation } }";
+            var completeQueryString = "mutation($input: PaymentRequestInput!){ processPayment(paymentRequest: $input){ successful, confirmationString } }";
             try
             {
                 var request = new GraphQLRequest
@@ -289,7 +289,7 @@ namespace Park20.Backoffice.Application.Services
                     // Handle errors
                     throw new Exception("GraphQL mutation errors occurred.");
                 }
-                return response.Data.processPayment.succesful;
+                return response.Data.processPayment.successful;
             }
             catch (Exception ex)
             {

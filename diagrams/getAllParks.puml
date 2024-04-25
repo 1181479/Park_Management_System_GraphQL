@@ -1,0 +1,8 @@
+@startuml getAllParks
+User -> Query: Sends HTTP Query Request
+Query -> ParkService: Requests Parks
+ParkService -> ParkRepository: Get All Parks
+ParkService <- ParkRepository: Returns Found Parks
+Query <- ParkService: Returns Parks
+User <- Query: Returns Result
+@enduml

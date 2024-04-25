@@ -1,0 +1,25 @@
+@startuml createUser
+User -> Mutation: Sends HTTP Mutation Request
+Mutation -> UserService: Checks If Email Exists
+UserService -> UserRepository: Checks If Email Exists
+UserService <- UserRepository: Returns Result
+Mutation <- UserService: Returns Result
+alt Email Exists
+    User <- Mutation: Returns Empty Result
+else Email Does Not Exist
+    Mutation -> UserService: Add Customer
+    UserService -> UserMapper: To Domain
+    UserService <- UserMapper: Returns Domain User
+    UserService -> ParkyWalletService: Create Parky Wallet
+    ParkyWalletService -> ParkyWalletRepository: Creates Parky Wallet
+    ParkyWalletService <- ParkyWalletRepository: Returns Created Parky Wallet
+    UserService <- ParkyWalletService: Returns Created Parky Wallet
+    UserService -> UserService: Sets Parky Wallet ID on User
+    UserService -> UserRepository: Creates User
+    UserService <- UserRepository: Returns Created User
+    UserService -> UserMapper: To DTO
+    UserService <- UserMapper: Returns DTO User
+    Mutation <- UserService: Returns User
+    User <- Mutation: Returns Result
+end
+@enduml

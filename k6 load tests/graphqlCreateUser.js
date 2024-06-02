@@ -16,10 +16,9 @@ export const options = {
     "p(99.99)",
     "count",
   ],
+  duration: '20m',
   summaryTimeUnit: "ms",
-  stages: [
-    { duration: "1m", target: 1 },
-  ],
+  iterations: 3000
 };
 
 const query = `

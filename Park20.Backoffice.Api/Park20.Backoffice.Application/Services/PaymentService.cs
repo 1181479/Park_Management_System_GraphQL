@@ -52,7 +52,10 @@ namespace Park20.Backoffice.Application.Services
             var graphQLOptions = new GraphQLHttpClientOptions
             {
                 EndPoint = uri,
-                HttpMessageHandler = new NativeMessageHandler(),
+                HttpMessageHandler = new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => { return true; }
+                }
             };
             _client = new GraphQLHttpClient(graphQLOptions, new NewtonsoftJsonSerializer());
         }
@@ -282,7 +285,7 @@ namespace Park20.Backoffice.Application.Services
                 dynamic response = await _client.SendMutationAsync<dynamic>(request);
                 DateTime endTime = DateTime.Now;
                 TimeSpan duration = endTime - startTime;
-                durations.Add(duration.TotalMilliseconds - 1000);
+                durations.Add(duration.TotalMilliseconds - 500);
 
                 if (response.Errors != null)
                 {
@@ -304,17 +307,29 @@ namespace Park20.Backoffice.Application.Services
         public void PrintMetrics()
         {
             double sum = 0;
+            durations.Sort();
+            string outputPath = "/App/output"; // Path inside the Docker container
+
+            // Create directory if it doesn't exist
+            Directory.CreateDirectory(outputPath);
+
+            string filePath = Path.Combine(outputPath, DateTime.Now.ToString("HHmmss") + "payment.csv");
+            string content = "req;time";
+            int i = 0;
             foreach (var duration in durations)
             {
+                i++;
                 sum += duration;
+                content += "\n" + i + ";" + duration;
             }
+            File.WriteAllText(filePath, content);
             if (durations.Count > 0)
             {
-                double avg = sum / durations.Count;
                 double min = durations.First();
                 double max = durations.Last();
+                double avg = sum / durations.Count;
                 double median = durations.Count % 2 == 0 ?
-                    (durations[durations.Count / 2 - 1] + durations[durations.Count / 2]) / 2 :
+                    (durations[durations.Count / 2 - 1] + durations[durations.Count / 2]) / 2.0 :
                     durations[durations.Count / 2];
 
                 double p90 = durations[(int)Math.Ceiling(0.9 * durations.Count) - 1];
@@ -327,6 +342,7 @@ namespace Park20.Backoffice.Application.Services
                 Console.WriteLine($"p(90): {p90} milliseconds");
                 Console.WriteLine($"p(95): {p95} milliseconds");
             }
+            durations.Clear();
         }
     }
 }
